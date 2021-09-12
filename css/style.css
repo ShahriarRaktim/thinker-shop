@@ -1,4 +1,5 @@
-body {
+body{
+  background-color: rgba(177, 39, 39, 0.493);
   overflow-x: hidden;
   font-family: "Montserrat", sans-serif;
 }
