@@ -15,7 +15,7 @@ const showProducts = (products) => {
       const div = document.createElement("div");
       div.classList.add("col");
       div.innerHTML = `
-          <div class="card h-100 text-center single-product">
+          <div class="single-product card h-100 text-center">
               <img class="product-image w-50 mx-auto" src=${product.image}></img>
               <div class="card-body">
                   <h4 class="card-title">${product.title}</h4>
@@ -23,7 +23,7 @@ const showProducts = (products) => {
                   <h2>Price: $ ${product.price}</h2>
                   <h5 class="pb-3"><small class="rating">Avg.Rating: ${product.rating.rate} (${product.rating.count})</small></h5>
                   <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-info">Add to Cart</button>
-                  <button id="details-btn" class="btn btn-danger">Details</button></div>
+                  <button id="details-btn" class="btn btn-secondary">Details</button></div>
               </div>
           </div>
       `;
