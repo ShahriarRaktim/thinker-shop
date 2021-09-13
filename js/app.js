@@ -1,8 +1,8 @@
 const loadProducts = () => {
   // const url = `https://fakestoreapi.com/products`;
   fetch('../js/data.json')
-    .then((response) => response.json())
-    .then((data) => showProducts(data));
+      .then((response) => response.json())
+      .then((data) => showProducts(data));
 };
 loadProducts();
 
@@ -11,20 +11,23 @@ const showProducts = (products) => {
   console.log(products)
   // const allProducts = products.map((pd) => pd);
   for (const product of products) {
-    // const img = product.image;
-    const div = document.createElement("div");
-    div.classList.add("product");
-    div.innerHTML = `<div class="single-product">
-      <div>
-    <img class="product-image" src=${product.image}></img>
-      </div>
-      <h3>${product.title}</h3>
-      <p>Category: ${product.category}</p>
-      <h2>Price: $ ${product.price}</h2>
-      <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-      <button id="details-btn" class="btn btn-danger">Details</button></div>
+      // const img = product.image;
+      const div = document.createElement("div");
+      div.classList.add("col");
+      div.innerHTML = `
+          <div class="card h-100 text-center single-product">
+              <img class="product-image w-50 mx-auto" src=${product.image}></img>
+              <div class="card-body">
+                  <h4 class="card-title">${product.title}</h4>
+                  <p class="card-text">Category: ${product.category}</p>
+                  <h2>Price: $ ${product.price}</h2>
+                  <h5 class="pb-3"><small class="rating">Avg.Rating: ${product.rating.rate} (${product.rating.count})</small></h5>
+                  <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-info">Add to Cart</button>
+                  <button id="details-btn" class="btn btn-danger">Details</button></div>
+              </div>
+          </div>
       `;
-    document.getElementById("all-products").appendChild(div);
+      document.getElementById("all-products").appendChild(div);
   }
 };
 
@@ -62,16 +65,16 @@ const setInnerText = (id, value) => {
 const updateTaxAndCharge = () => {
   const priceConverted = getInputValue("price");
   if (priceConverted > 200) {
-    setInnerText("delivery-charge", 30);
-    setInnerText("total-tax", priceConverted * 0.2);
+      setInnerText("delivery-charge", 30);
+      setInnerText("total-tax", priceConverted * 0.2);
   }
   if (priceConverted > 400) {
-    setInnerText("delivery-charge", 50);
-    setInnerText("total-tax", priceConverted * 0.3);
+      setInnerText("delivery-charge", 50);
+      setInnerText("total-tax", priceConverted * 0.3);
   }
   if (priceConverted > 500) {
-    setInnerText("delivery-charge", 60);
-    setInnerText("total-tax", priceConverted * 0.4);
+      setInnerText("delivery-charge", 60);
+      setInnerText("total-tax", priceConverted * 0.4);
   }
   updateTotal();
 };
@@ -79,8 +82,8 @@ const updateTaxAndCharge = () => {
 //grandTotal update function
 const updateTotal = () => {
   const grandTotal =
-    getInputValue("price") + getInputValue("delivery-charge") +
-    getInputValue("total-tax");
+      getInputValue("price") + getInputValue("delivery-charge") +
+      getInputValue("total-tax");
   document.getElementById("total").innerText = grandTotal.toFixed(2);
 };
 
